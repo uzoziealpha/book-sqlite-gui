@@ -3,6 +3,14 @@ import backend
 
 #this is allows us retrieve the selected row and matching index
 def get_selected_row(event):
+
+#The error was fixed by simply implementing a try  and except block.
+# When the get_selected_row  function is called, Python will execute the indented block under try . 
+# If there is an IndexError, none of the lines under try  will be executed; the line under except  will be executed, which is pass. The pass  statement means "do nothing". 
+# Therefore, the function will do nothing when there's an empty listbox.
+
+
+  try:
     global selected_tuple
     #first we need to get the list from the listbox
     index=list1.curselection()[0]
@@ -17,7 +25,8 @@ def get_selected_row(event):
     e3.insert(END,selected_tuple[3])
     e4.delete(0,END)
     e4.insert(END,selected_tuple[4])
-
+  except IndexError:
+      pass
 
 
 
@@ -58,7 +67,7 @@ window=Tk()
 window.wm_title("BookStore")
 
 
-#ctreating the grid and columns
+#creating the grid and columns
 l1=Label(window, text="Title")
 l1.grid(row=0, column=0)
 
